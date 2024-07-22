@@ -1,0 +1,35 @@
+export const Fonts = {
+  museo: {
+    300: "Museo-300",
+    700: "Museo-700",
+  },
+  SFProDisplay: {
+    Regular: "SFProDisplay-Regular",
+    Bold: "SFProDisplay-Bold",
+    Semibold: "SFProDisplay-Semibold",
+  },
+  SFPro: {
+    Black: "SFProText-Black",
+    BlackItalic: "SFProText-BlackItalic",
+    Bold: "SFProText-Bold",
+    BoldItalic: "SFProText-BoldItalic",
+    Heavy: "SFProText-Heavy",
+    HeavyItalic: "SFProText-HeavyItalic",
+    Light: "SFProText-Light",
+    LightItalic: "SFProText-LightItalic",
+    Medium: "SFProText-Medium",
+    MediumItalic: "SFProText-MediumItalic",
+    Regular: "SFProText-Regular",
+    RegularItalic: "SFProText-RegularItalic",
+    Semibold: "SFProText-Semibold",
+    SemiboldItalic: "SFProText-SemiboldItalic",
+    Thin: "SFProText-Thin",
+    ThinItalic: "SFProText-ThinItalic",
+    Ultralight: "SFProText-Ultralight",
+    UltralightItalic: "SFProText-UltralightItalic",
+  },
+  ProximaNova: {
+    Regular: "ProximaNova-Regular",
+    Bold: "ProximaNova-Bold",
+  },
+};
