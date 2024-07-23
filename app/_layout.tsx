@@ -6,10 +6,12 @@ import {
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { useLocalStorage } from "usehooks-ts";
+import { Header } from "@/components/Header";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -19,6 +21,9 @@ export default function RootLayout() {
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
+
+  const [token, setToken] = useLocalStorage("token", undefined);
+  const isLoggedin = useMemo(() => !!token, [token]);
 
   useEffect(() => {
     if (loaded) {
@@ -32,17 +37,8 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: "#f4511e",
-          },
-          headerTintColor: "#fff",
-          headerTitleStyle: {
-            fontWeight: "bold",
-          },
-        }}
-      >
+      <Header isLoggedin={isLoggedin} />
+      <Stack>
         <Stack.Screen name="index" />
         <Stack.Screen name="+not-found" />
       </Stack>
