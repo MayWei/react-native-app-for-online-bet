@@ -3,41 +3,33 @@ import { Body } from "../Fonts/Body";
 import { ClockCounter } from "../clock/ClockCounter";
 import Icon from "react-native-vector-icons/FontAwesome";
 interface Props {
-  onPress: () => void;
-  imguri: string;
   name: string;
   racingNumber: string;
   startTime: string;
-  isFirst?: boolean;
 }
-export const ListSectionItem: React.FC<Props> = ({
-  onPress,
-  imguri,
+export const MeetingSectionItem: React.FC<Props> = ({
   name,
   racingNumber,
   startTime,
-  isFirst,
 }) => {
   return (
     <>
       <View style={styles.container}>
-        <TouchableOpacity style={styles.touchable} onPress={onPress}>
+        <TouchableOpacity style={styles.touchable}>
           <View
             style={{
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
+              flexBasis: "50%",
             }}
           >
-            <Image
-              source={{
-                uri: imguri,
-              }}
-              style={styles.avatar}
-            />
-            <Body.B2 semiBold style={styles.name}>
-              {name}
+            <Body.B2 semiBold style={{ marginRight: 10 }}>
+              {racingNumber}
             </Body.B2>
+            <Body.B3 semiBold style={styles.name}>
+              {name}
+            </Body.B3>
           </View>
           <View
             style={{
@@ -46,13 +38,7 @@ export const ListSectionItem: React.FC<Props> = ({
               alignItems: "center",
             }}
           >
-            <Body.B3 semiBold style={{ marginRight: 4 }}>
-              {racingNumber}
-            </Body.B3>
-            <ClockCounter
-              startTime={startTime}
-              isFirst={isFirst}
-            ></ClockCounter>
+            <ClockCounter startTime={startTime}></ClockCounter>
             <Icon name="angle-right" size={24} color="#000" />
           </View>
         </TouchableOpacity>

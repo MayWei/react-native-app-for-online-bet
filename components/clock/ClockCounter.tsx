@@ -3,6 +3,7 @@ import { Text } from "react-native";
 import { Body } from "../Fonts/Body";
 interface Props {
   startTime: string;
+  isFirst?: boolean;
 }
 
 const calculateTimeDiff = (start: number, stop: number): string => {
@@ -13,7 +14,7 @@ const calculateTimeDiff = (start: number, stop: number): string => {
   return `${hours} h ${minutes} m`;
 };
 
-export const ClockCounter: React.FC<Props> = ({ startTime }) => {
+export const ClockCounter: React.FC<Props> = ({ startTime, isFirst }) => {
   const [timeDiff, setTimeDiff] = useState(
     calculateTimeDiff(new Date().getTime(), new Date(startTime).getTime())
   );
@@ -26,8 +27,16 @@ export const ClockCounter: React.FC<Props> = ({ startTime }) => {
     return () => clearInterval(timer);
   }, [timeDiff]);
   return (
-    <Body.B3 semiBold style={{ marginRight: 10 }}>
+    <Body.B4
+      semiBold
+      style={{
+        marginRight: 10,
+        backgroundColor: isFirst ? "red" : "black",
+        color: "#fff",
+        borderRadius: 4,
+      }}
+    >
       {timeDiff}
-    </Body.B3>
+    </Body.B4>
   );
 };
