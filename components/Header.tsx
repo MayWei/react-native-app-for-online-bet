@@ -7,10 +7,11 @@ import { jwtDecode } from "jwt-decode";
 import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
 import { Viewport } from "@/utils/viewport";
 import { logout } from "@/service/logout";
+import { AsyncKeyStore } from "@/service/TokenStorage";
+import { useEffect, useState } from "react";
+import { useLogin } from "@/context/LoginProvider";
 
-interface HeaderProps {
-  isLoggedin: boolean;
-}
+interface HeaderProps {}
 const horizontalMargin = (insets: EdgeInsets) => {
   const standardSpacing = Viewport.isXLUp() ? 16 : 12;
 
@@ -20,38 +21,59 @@ const horizontalMargin = (insets: EdgeInsets) => {
   };
 };
 export const Header: React.FC<HeaderProps> = (props) => {
-  const { isLoggedin } = props;
-  const [name, setName] = useLocalStorage("unsername", undefined);
-  const [token, setToken] = useLocalStorage("token", undefined);
+  const { isLoggedin, setIsLoggedin } = useLogin();
+  const tokenstorage = AsyncKeyStore.getInstance();
+  const [name, setName] = useState("");
   const insets = useSafeAreaInsets();
+
   const Login = async () => {
     try {
-      const token = await login();
+      const token: { token: string } = await login();
+      await tokenstorage.add("token", token.token);
+      const name = (jwtDecode(token.token) as any).name;
 
-      setToken(token);
-      const name = (jwtDecode(token) as any).name;
-      console.log("token", token, name);
-      setName(name ?? "");
-    } catch {}
+      await tokenstorage.add("username", name);
+      const b = await tokenstorage.get("token");
+      console.log("token b", b);
+      setIsLoggedin(true);
+    } catch (error) {
+      setIsLoggedin(false);
+    }
   };
 
   const Logout = async () => {
     logout();
-    setName(undefined);
-    setToken(undefined);
+    await tokenstorage.clear();
+    setIsLoggedin(false);
   };
 
+  useEffect(() => {
+    const getName = async () => {
+      const name = await tokenstorage.get("username");
+      setName(name ?? "");
+    };
+    if (isLoggedin) {
+      getName();
+    }
+  }, [isLoggedin]);
+
   return (
-    <View style={[styles.container, horizontalMargin(insets)]}>
+    <View
+      style={[
+        styles.container,
+        horizontalMargin(insets),
+        { marginTop: insets.top + 16 },
+      ]}
+    >
       {isLoggedin ? (
-        <>
-          <Body.B3 semiBold style={[styles.personalisation]}>
-            {name ?? ""}
+        <View style={styles.logincontainer}>
+          <Body.B3 semiBold style={styles.personalisation}>
+            {!!name ? name : ""}
           </Body.B3>
-          <Button label="Logout" onPress={Logout} />
-        </>
+          <Button label="Logout" onPress={Logout} style={styles.login} />
+        </View>
       ) : (
-        <Button label="Login" onPress={Login} />
+        <Button label="Login" onPress={Login} style={styles.logout} />
       )}
     </View>
   );
@@ -59,9 +81,27 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    justifyContent: "flex-end",
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 8,
+  },
+  logincontainer: {
+    width: "20%",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignSelf: "flex-end",
   },
   personalisation: {
-    marginBottom: 8,
+    marginRight: "10%",
+    alignSelf: "center",
+  },
+  login: {
+    paddingVertical: 6,
+  },
+  logout: {
+    paddingVertical: 6,
+    justifyContent: "flex-end",
+    alignSelf: "flex-end",
   },
 });

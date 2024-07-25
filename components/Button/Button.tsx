@@ -11,6 +11,7 @@ import { Body } from "../Fonts/Body";
 export interface ButtonProps {
   onPress?: () => void;
   label: string;
+  selected?: boolean;
   style?: StyleProp<ViewStyle>;
 }
 
@@ -21,7 +22,7 @@ export const Button = (props: ButtonProps): ReactElement => {
         onPress={props.onPress}
         style={[styles.button, props.style]}
       >
-        <Body.B3 semiBold style={[styles.label]}>
+        <Body.B3 semiBold style={{ color: props.selected ? "#000" : "#fff" }}>
           {props.label}
         </Body.B3>
       </TouchableOpacity>
@@ -31,17 +32,17 @@ export const Button = (props: ButtonProps): ReactElement => {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
+    width: "auto",
+    paddingHorizontal: 2,
+    // width:"100%" login ui need this
   },
   button: {
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 12,
+    paddingVertical: 8,
+    paddingHorizontal: 4,
     borderRadius: 8,
     backgroundColor: "black",
-  },
-  label: {
-    color: "white",
   },
 });

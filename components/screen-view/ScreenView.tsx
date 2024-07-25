@@ -20,11 +20,11 @@ export interface ScreenViewProps {
 export const determineHorizontalPadding = (breakpoint: Breakpoint): number => {
   switch (breakpoint) {
     case Breakpoint.XL:
-      return 24;
+      return 6;
     case Breakpoint.L:
-      return 20;
+      return 5;
     default:
-      return 16; // M and S have the same margin
+      return 4; // M and S have the same margin
   }
 };
 
@@ -46,6 +46,7 @@ export const ScreenView = React.forwardRef<
         {
           paddingLeft: horizontalPadding + insets.left,
           paddingRight: horizontalPadding + insets.right,
+          paddingBottom: insets.bottom + 50,
         },
         props.style,
       ]}
@@ -57,6 +58,6 @@ export const ScreenView = React.forwardRef<
 
 const styles = StyleSheet.create({
   screenView: {
-    backgroundColor: Colors.tertiary01,
+    backgroundColor: "#000",
   },
 });

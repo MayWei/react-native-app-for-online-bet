@@ -6,7 +6,7 @@ import { Fonts } from "./Fonts";
 export interface TextProps extends RNTextProps {
   children?: React.ReactNode;
   semiBold?: boolean;
-  style: Array<Object>;
+  style?: Object;
 }
 
 const BodyText = (props: TextProps) => {

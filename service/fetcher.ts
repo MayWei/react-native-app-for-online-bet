@@ -1,5 +1,14 @@
 import fetch, { RequestInitWithTimeout } from "react-native-fetch-polyfill";
 export const DEFAULT_TIMEOUT = 60 * 1000;
+
+export enum ResponseStatus {
+  SUCCESS = 200,
+  ACCEPTED = 202,
+  BAD_REQUEST = 400,
+  UNAUTHORIZED = 401,
+  FORBIDDEN = 403,
+  NOT_FOUND = 404,
+}
 /**
  * a fetcher
  * @param uri
@@ -33,6 +42,8 @@ export const makeJSONRequest = async <T>(
   if (body) {
     requestInit.body = JSON.stringify(body);
   }
-
-  return fetch(`${uri}`, requestInit);
+  console.log("fetch", requestInit);
+  const response = await fetch(`${uri}`, requestInit);
+  console.log("fetch response", response);
+  return response;
 };

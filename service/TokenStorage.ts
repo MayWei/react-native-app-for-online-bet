@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-type KeyType = "token" | "username";
+type KeyType = "token" | "username" | "racingtypes";
 
 interface KeyStore {
   add: (key: KeyType, value: string) => Promise<void>;
@@ -18,6 +18,7 @@ export class AsyncKeyStore implements KeyStore {
   }
 
   async add(key: KeyType, value: string): Promise<void> {
+    console.log("AsyncStorage", AsyncStorage);
     return await AsyncStorage.setItem(key, value);
   }
 
