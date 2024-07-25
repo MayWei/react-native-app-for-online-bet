@@ -21,7 +21,6 @@ export class AsyncKeyStore implements KeyStore {
   }
 
   async add(key: KeyType, value: string): Promise<void> {
-    console.log("AsyncStorage", AsyncStorage);
     return await AsyncStorage.setItem(key, value);
   }
 

@@ -42,7 +42,6 @@ export default function Login() {
 
         await tokenstorage.add("username", name);
         const b = await tokenstorage.get("token");
-        console.log("token b", b);
         setIsLoggedin(true);
         router.push("/");
       } catch (error) {

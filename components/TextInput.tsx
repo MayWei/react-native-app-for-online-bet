@@ -67,15 +67,10 @@ export default function TextInputImpl(props: TextInputFieldProps) {
     setIsFocused(false);
 
     if (!value || value == "") {
-      console.log("value emptey", value, typeof value, !!value);
       animateLabelPos(0, 0);
       animateLabelSize(1);
     }
   };
-
-  useEffect(() => {
-    console.log("value", value);
-  }, [value]);
 
   return (
     <View style={styles.container}>

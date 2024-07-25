@@ -23,7 +23,6 @@ export const toSection = (meetings: RaceTypeInterface[]) => {
         meetings: [],
       };
     }
-    console.log("meeting seq", meeting.name, meeting.start_time);
     acc[raceTypeName].meetings.push(meeting);
     return acc;
   }, {});

@@ -42,8 +42,6 @@ export const makeJSONRequest = async <T>(
   if (body) {
     requestInit.body = JSON.stringify(body);
   }
-  console.log("fetch", requestInit);
   const response = await fetch(`${uri}`, requestInit);
-  console.log("fetch response", response);
   return response;
 };

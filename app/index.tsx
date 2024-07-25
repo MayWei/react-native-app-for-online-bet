@@ -31,21 +31,17 @@ export default function Homescreen() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    console.log(1);
     const queryMeetingsInfo = async () => {
       setIsloading(true);
       const res = await queryMeetings();
       const { sortedGroups, sortedMeetings } = toSection(res.data);
       setSectionData(sortedGroups);
       setSortedMeetingsData(sortedMeetings);
-      console.log("res", sortedGroups);
       setIsloading(false);
     };
-    console.log("isLoggedin", isLoggedin);
     if (isLoggedin) queryMeetingsInfo();
   }, [isLoggedin]);
   useEffect(() => {
-    console.log("sectionData", sectionData);
     if (sectionData.length > 0 && racingSelected == null) {
       const newRace: { [racingType: string]: boolean } = {};
       sectionData.forEach((section) =>
@@ -61,9 +57,7 @@ export default function Homescreen() {
       );
     }
   }, [racingSelected, sectionData, isLoading]);
-  useEffect(() => {
-    console.log("buttonState", racingSelected);
-  }, [racingSelected]);
+  useEffect(() => {}, [racingSelected]);
   return sectionData.length == 0 ||
     isLoading ||
     filteredSectionData.length === 0 ? (

@@ -35,7 +35,6 @@ export const RacingSelectedProvider = (
   const tokenstorage = AsyncKeyStore.getInstance();
   const setRacingType = useCallback(
     (racingType: string | { [racingType: string]: boolean }) => {
-      console.log("press change", typeof racingType, racingSelected);
       if (
         typeof racingType === "string" &&
         racingSelected !== null &&
@@ -61,7 +60,6 @@ export const RacingSelectedProvider = (
   useEffect(() => {
     const readRacing = async () => {
       const racingTypes = await tokenstorage.get("racingtypes");
-      console.log("racingTypes", racingTypes);
       const newracing = {};
 
       racingTypes
@@ -79,7 +77,6 @@ export const RacingSelectedProvider = (
     // }
   }, [isLoggedin]);
   useEffect(() => {
-    console.log("racingSelected", racingSelected);
     const readRacing = async () => {
       if (racingSelected !== null) {
         const selectedRaces = Object.keys(racingSelected).filter(
