@@ -78,28 +78,24 @@ export const Body = {
 
 const styles = StyleSheet.create({
   b: {
-    color: Colors.warmBlack,
+    color: "#333333",
   },
   b1: {
-    fontFamily: Fonts.SFProDisplay.Regular,
     fontSize: 20,
     lineHeight: 28,
     letterSpacing: 0.38,
   },
   b2: {
-    fontFamily: Fonts.SFPro.Regular,
     fontSize: 18,
     lineHeight: 26,
     letterSpacing: -0.4,
   },
   b3: {
-    fontFamily: Fonts.SFPro.Regular,
     fontSize: 16,
     lineHeight: 24,
     letterSpacing: -0.32,
   },
   b4: {
-    fontFamily: Fonts.SFPro.Regular,
     fontSize: 14,
     lineHeight: 20,
     letterSpacing: -0.16,

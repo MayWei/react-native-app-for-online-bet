@@ -159,14 +159,14 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     borderWidth: 1,
     borderBottomWidth: 2,
-    borderBottomColor: Colors.tertiaryGrey02,
+    borderBottomColor: "#EEF0F2",
     alignItems: "center",
   },
   inputWrapperFocus: {
-    borderBottomColor: Colors.primary01,
+    borderBottomColor: "#61E5A9",
   },
   inputWrapperError: {
-    borderBottomColor: Colors.alert01,
+    borderBottomColor: "#D72329",
   },
   iconContainer: {
     padding: 10,
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 0,
     backgroundColor: "transparent",
-    color: Colors.warmBlack,
+    color: "#333333",
     position: "relative",
     fontSize: 18,
     padding: 0,
@@ -183,10 +183,10 @@ const styles = StyleSheet.create({
   },
   bottomText: {
     marginTop: 4,
-    color: Colors.secondary01,
+    color: "#71767F",
   },
   error: {
-    color: Colors.alert01,
+    color: "#D72329",
   },
   labelWrapper: {
     position: "absolute",
@@ -194,6 +194,6 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 18,
-    color: Colors.secondary01,
+    color: "#71767F",
   },
 });

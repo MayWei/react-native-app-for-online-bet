@@ -9,6 +9,9 @@ export interface LoginProviderState {
 
 export interface LoginProviderProps {}
 const LoginContext = createSafeContext<LoginProviderState>();
+/**
+ * a Context saving Logged in state
+ */
 export const LoginProvider = (props: PropsWithChildren<LoginProviderProps>) => {
   const { children } = props;
   const [isLoggedin, setIsLoggedin] = useState(false);

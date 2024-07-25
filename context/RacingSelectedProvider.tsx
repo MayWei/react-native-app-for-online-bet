@@ -18,6 +18,11 @@ export interface RacingSelectedProviderState {
 
 export interface RacingSelectedProviderProps {}
 const RacingSelectedContext = createSafeContext<RacingSelectedProviderState>();
+
+/**
+ * a Context saving user selected Racing types, also saving this data to async storage
+ * and synchrose context and storage value
+ */
 export const RacingSelectedProvider = (
   props: PropsWithChildren<RacingSelectedProviderProps>
 ) => {
@@ -26,7 +31,7 @@ export const RacingSelectedProvider = (
   const [racingSelected, setRacingSelected] = useState<{
     [racingType: string]: boolean;
   } | null>(null);
-//   const renderFirst = useRef(true);
+  //   const renderFirst = useRef(true);
   const tokenstorage = AsyncKeyStore.getInstance();
   const setRacingType = useCallback(
     (racingType: string | { [racingType: string]: boolean }) => {

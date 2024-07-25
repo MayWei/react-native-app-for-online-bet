@@ -1,5 +1,10 @@
 import { MeetingDetailsInterface, RaceTypeInterface } from "@/types/types";
 
+/**
+ * this is process meeting API data, return { sortedGroups, sortedMeetings } to be used
+ * in dashboard page and meeting page(implemented as a Modal in this project)
+ */
+
 export const toSection = (meetings: RaceTypeInterface[]) => {
   const groupedByRaceType = meetings.reduce<
     Record<

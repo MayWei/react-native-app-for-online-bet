@@ -1,6 +1,10 @@
 import { AsyncKeyStore } from "./TokenStorage";
 import { ResponseStatus, makeJSONRequest } from "./fetcher";
 
+/**
+ * meeting api request
+ */
+
 export const queryMeetings = async () => {
   const tokenstorage = AsyncKeyStore.getInstance();
   const token = await tokenstorage.get("token");

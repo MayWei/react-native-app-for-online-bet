@@ -7,7 +7,10 @@ interface KeyStore {
   get: (key: KeyType) => Promise<string | undefined>;
   clear: () => Promise<void>;
 }
-
+/**
+ * this is a class to process async storage, also with a private static instance
+ * which will be used as a global var in this project access local storage
+ */
 export class AsyncKeyStore implements KeyStore {
   private static instance: AsyncKeyStore | null = null;
   public static getInstance(): AsyncKeyStore {

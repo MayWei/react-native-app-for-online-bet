@@ -14,6 +14,7 @@ import { Header } from "@/components/Header";
 import { LoginProvider } from "@/context/LoginProvider";
 import { RacingSelectedProvider } from "@/context/RacingSelectedProvider";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { ModalProvider } from "@/context/ModalProvider";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -39,11 +40,13 @@ export default function RootLayout() {
       <LoginProvider>
         <RacingSelectedProvider>
           <GestureHandlerRootView style={{ flex: 1 }}>
-            <Header />
-            <Stack>
-              <Stack.Screen name="index" options={{ headerShown: false }} />
-              <Stack.Screen name="+not-found" />
-            </Stack>
+            <ModalProvider>
+              <Header />
+              <Stack>
+                <Stack.Screen name="index" options={{ headerShown: false }} />
+                <Stack.Screen name="login" />
+              </Stack>
+            </ModalProvider>
           </GestureHandlerRootView>
         </RacingSelectedProvider>
       </LoginProvider>

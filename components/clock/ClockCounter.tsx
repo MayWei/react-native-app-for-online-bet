@@ -31,7 +31,7 @@ export const ClockCounter: React.FC<Props> = ({ startTime, isFirst }) => {
       semiBold
       style={{
         marginRight: 10,
-        backgroundColor: isFirst ? "red" : "black",
+        backgroundColor: isFirst ? "#D72329" : "#000",
         color: "#fff",
         borderRadius: 4,
       }}

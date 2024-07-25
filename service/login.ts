@@ -1,5 +1,7 @@
 import { ResponseStatus, makeJSONRequest } from "./fetcher";
-
+/**
+ * login api request
+ */
 export const login = async () => {
   const Response = await makeJSONRequest(
     "https://interview-api-beta.vercel.app/api/login",

@@ -10,6 +10,7 @@ import { logout } from "@/service/logout";
 import { AsyncKeyStore } from "@/service/TokenStorage";
 import { useEffect, useState } from "react";
 import { useLogin } from "@/context/LoginProvider";
+import { usePathname, useRouter } from "expo-router";
 
 interface HeaderProps {}
 const horizontalMargin = (insets: EdgeInsets) => {
@@ -25,20 +26,11 @@ export const Header: React.FC<HeaderProps> = (props) => {
   const tokenstorage = AsyncKeyStore.getInstance();
   const [name, setName] = useState("");
   const insets = useSafeAreaInsets();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const Login = async () => {
-    try {
-      const token: { token: string } = await login();
-      await tokenstorage.add("token", token.token);
-      const name = (jwtDecode(token.token) as any).name;
-
-      await tokenstorage.add("username", name);
-      const b = await tokenstorage.get("token");
-      console.log("token b", b);
-      setIsLoggedin(true);
-    } catch (error) {
-      setIsLoggedin(false);
-    }
+    router.push("/login");
   };
 
   const Logout = async () => {
@@ -72,9 +64,9 @@ export const Header: React.FC<HeaderProps> = (props) => {
           </Body.B3>
           <Button label="Logout" onPress={Logout} style={styles.login} />
         </View>
-      ) : (
+      ) : pathname !== "/login" ? (
         <Button label="Login" onPress={Login} style={styles.logout} />
-      )}
+      ) : null}
     </View>
   );
 };
